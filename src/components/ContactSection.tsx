@@ -11,7 +11,7 @@ export function ContactSection() {
         {/* Static Stars */}
         <div className="absolute inset-0 opacity-50"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ccircle cx='20' cy='30' r='1' fill='%23fff' opacity='0.8'/%3E%3Ccircle cx='100' cy='150' r='1' fill='%23fff' opacity='0.5'/%3E%3Ccircle cx='200' cy='50' r='1.5' fill='%23fff' opacity='0.9'/%3E%3Ccircle cx='300' cy='250' r='1' fill='%23fff' opacity='0.6'/%3E%3Ccircle cx='350' cy='100' r='2' fill='%23fff' opacity='0.4'/%3E%3Ccircle cx='50' cy='300' r='1.5' fill='%23fff' opacity='0.7'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0MDAnIGhlaWdodD0nNDAwJz48Y2lyY2xlIGN4PScyMCcgY3k9JzMwJyByPScxJyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjgnLz48Y2lyY2xlIGN4PScxMDAnIGN5PScxNTAnIHI9JzEnIGZpbGw9JyNmZmYnIG9wYWNpdHk9JzAuNScvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzUwJyByPScxLjUnIGZpbGw9JyNmZmYnIG9wYWNpdHk9JzAuOScvPjxjaXJjbGUgY3g9JzMwMCcgY3k9JzI1MCcgcj0nMScgZmlsbD0nI2ZmZicgb3BhY2l0eT0nMC42Jy8+PGNpcmNsZSBjeD0nMzUwJyBjeT0nMTAwJyByPScyJyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjQnLz48Y2lyY2xlIGN4PSc1MCcgY3k9JzMwMCcgcj0nMS41JyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjcnLz48L3N2Zz4=")`,
             backgroundSize: '400px 400px',
           }}
         />

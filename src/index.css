@@ -43,7 +43,7 @@
     background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
   }
   .stars {
-    background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+    background: black url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23fff' opacity='0.8'/%3E%3Ccircle cx='50' cy='80' r='1' fill='%23fff' opacity='0.5'/%3E%3Ccircle cx='150' cy='40' r='1.5' fill='%23fff' opacity='0.9'/%3E%3Ccircle cx='180' cy='150' r='1' fill='%23fff' opacity='0.6'/%3E%3Ccircle cx='80' cy='180' r='2' fill='%23fff' opacity='0.4'/%3E%3Ccircle cx='120' cy='120' r='1.5' fill='%23fff' opacity='0.7'/%3E%3C/svg%3E") repeat;
     background-size: 200px 200px;
     animation: stars-move 100s linear infinite;
   }
