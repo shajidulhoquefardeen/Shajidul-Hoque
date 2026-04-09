@@ -1,5 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+
+const STAR_BG = `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0MDAnIGhlaWdodD0nNDAwJz48Y2lyY2xlIGN4PScyMCcgY3k9JzMwJyByPScxJyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjgnLz48Y2lyY2xlIGN4PScxMDAnIGN5PScxNTAnIHI9JzEnIGZpbGw9JyNmZmYnIG9wYWNpdHk9JzAuNScvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzUwJyByPScxLjUnIGZpbGw9JyNmZmYnIG9wYWNpdHk9JzAuOScvPjxjaXJjbGUgY3g9JzMwMCcgY3k9JzI1MCcgcj0nMScgZmlsbD0nI2ZmZicgb3BhY2l0eT0nMC42Jy8+PGNpcmNsZSBjeD0nMzUwJyBjeT0nMTAwJyByPScyJyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjQnLz48Y2lyY2xlIGN4PSc1MCcgY3k9JzMwMCcgcj0nMS41JyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjcnLz48L3N2Zz4=")`;
 
 export function MakeBreak() {
   const [isHovered, setIsHovered] = useState(false);
@@ -29,113 +31,56 @@ export function MakeBreak() {
         {/* Parallax Stars Layer 1 (Far - Smallest, Slowest) */}
         <motion.div 
           className="absolute inset-[-100%]"
+          style={{ backgroundImage: STAR_BG, backgroundSize: '300px 300px', opacity: 0.4 }}
           animate={{
             x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * -0.8,
             y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * 0.5,
           }}
           transition={{ type: 'spring', damping: 20, stiffness: 300, mass: 0.5 }}
-        >
-          {[...Array(150)].map((_, i) => (
-            <div
-              key={`far-${i}`}
-              className="absolute w-[2px] h-[2px] bg-white/50 rounded-full"
-              style={{
-                left: `${(i * 13.7) % 100}%`,
-                top: `${(i * 17.3) % 100}%`,
-              }}
-            />
-          ))}
-        </motion.div>
+        />
 
         {/* Parallax Stars Layer 2 (Medium - Small, Fast) */}
         <motion.div 
           className="absolute inset-[-100%]"
+          style={{ backgroundImage: STAR_BG, backgroundSize: '400px 400px', opacity: 0.6, backgroundPosition: '50px 50px' }}
           animate={{
             x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * 1.5,
             y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * -1.2,
           }}
           transition={{ type: 'spring', damping: 25, stiffness: 400, mass: 0.5 }}
-        >
-          {[...Array(100)].map((_, i) => (
-            <div
-              key={`med-${i}`}
-              className="absolute w-[3px] h-[3px] bg-white/80 rounded-full"
-              style={{
-                left: `${(i * 19.1) % 100}%`,
-                top: `${(i * 23.7) % 100}%`,
-                boxShadow: '0 0 2px rgba(255,255,255,0.3)',
-              }}
-            />
-          ))}
-        </motion.div>
+        />
 
         {/* Parallax Stars Layer 3 (Near - Largest, Fastest) */}
         <motion.div 
           className="absolute inset-[-150%]"
+          style={{ backgroundImage: STAR_BG, backgroundSize: '500px 500px', opacity: 0.8, backgroundPosition: '100px 100px' }}
           animate={{
             x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * -2.2,
             y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * -1.8,
           }}
           transition={{ type: 'spring', damping: 15, stiffness: 350, mass: 0.5 }}
-        >
-          {[...Array(60)].map((_, i) => (
-            <motion.div
-              key={`near-${i}`}
-              className="absolute w-[4px] h-[4px] bg-white rounded-full"
-              style={{
-                left: `${(i * 31.3) % 100}%`,
-                top: `${(i * 37.7) % 100}%`,
-                boxShadow: '0 0 8px #fff',
-              }}
-              animate={{
-                opacity: [0.4, 1, 0.4],
-                scale: [0.8, 1.2, 0.8],
-              }}
-              transition={{
-                duration: 2 + (i % 3),
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </motion.div>
+        />
+
+        {/* Twinkling Layer */}
+        <motion.div 
+          className="absolute inset-[-100%]"
+          style={{ backgroundImage: STAR_BG, backgroundSize: '250px 250px', backgroundPosition: '200px 200px' }}
+          animate={{
+            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * 0.5,
+            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * 0.5,
+            opacity: [0.1, 0.9, 0.1]
+          }}
+          transition={{
+            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+            x: { type: 'spring', damping: 20, stiffness: 300, mass: 0.5 },
+            y: { type: 'spring', damping: 20, stiffness: 300, mass: 0.5 }
+          }}
+        />
       </div>
 
       {/* Top/Bottom Blending Gradients */}
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-bg to-transparent z-10" />
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-bg to-transparent z-10" />
-
-      {/* Twinkling & Moving Stars */}
-      <motion.div 
-        className="absolute inset-[-200%] z-10 pointer-events-none"
-        animate={{
-          x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * 3.5,
-          y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * 2.8,
-        }}
-        transition={{ type: 'spring', damping: 20, stiffness: 500, mass: 0.5 }}
-      >
-        {[...Array(80)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-[4px] h-[4px] bg-white rounded-full"
-            style={{
-              left: `${(i * 7.7) % 100}%`,
-              top: `${(i * 13.3) % 100}%`,
-              boxShadow: '0 0 6px #fff',
-            }}
-            animate={{
-              opacity: [0.1, 0.8, 0.1],
-              scale: [0.7, 1.2, 0.7],
-            }}
-            transition={{
-              duration: 2 + (i % 3),
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.1,
-            }}
-          />
-        ))}
-      </motion.div>
+      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-bg to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-bg to-transparent z-10 pointer-events-none" />
 
       {/* Text Content Area */}
       <div 
@@ -166,7 +111,7 @@ export function MakeBreak() {
 
       {/* Flashlight effect */}
       <motion.div 
-        className="absolute z-30 w-[500px] h-[500px] rounded-full pointer-events-none opacity-40 mix-blend-overlay"
+        className="absolute z-30 w-[500px] h-[500px] rounded-full pointer-events-none opacity-40 mix-blend-screen"
         style={{
           background: 'radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%)',
         }}
@@ -179,4 +124,3 @@ export function MakeBreak() {
     </section>
   );
 }
-
