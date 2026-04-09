@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@theme {
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Instrument Serif', serif;
+
+  --color-bg: hsl(0 0% 4%);
+  --color-surface: hsl(0 0% 8%);
+  --color-text-primary: hsl(0 0% 96%);
+  --color-muted: hsl(0 0% 53%);
+  --color-stroke: hsl(0 0% 12%);
+  --color-accent: hsl(0 0% 96%);
+
+  --animate-scroll-down: scroll-down 1.5s ease-in-out infinite;
+  --animate-role-fade-in: role-fade-in 0.4s ease-out forwards;
+  --animate-gradient-shift: gradient-shift 6s ease infinite;
+
+  @keyframes scroll-down {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(200%); }
+  }
+  @keyframes role-fade-in {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text-primary font-body antialiased selection:bg-text-primary selection:text-bg;
+  }
+}
+
+@layer utilities {
+  .accent-gradient {
+    background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+  }
+  .stars {
+    background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+    background-size: 200px 200px;
+    animation: stars-move 100s linear infinite;
+  }
+}
+
+@keyframes stars-move {
+  from { background-position: 0 0; }
+  to { background-position: 10000px 5000px; }
+}
