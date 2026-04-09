@@ -11,10 +11,7 @@ export function ContactSection() {
         {/* Static Stars */}
         <div className="absolute inset-0 opacity-50"
           style={{
-            backgroundImage: `radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
-                              radial-gradient(1px 1px at 100px 150px, #fff, rgba(0,0,0,0)),
-                              radial-gradient(2px 2px at 200px 50px, #fff, rgba(0,0,0,0)),
-                              radial-gradient(1.5px 1.5px at 300px 250px, #fff, rgba(0,0,0,0))`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ccircle cx='20' cy='30' r='1' fill='%23fff' opacity='0.8'/%3E%3Ccircle cx='100' cy='150' r='1' fill='%23fff' opacity='0.5'/%3E%3Ccircle cx='200' cy='50' r='1.5' fill='%23fff' opacity='0.9'/%3E%3Ccircle cx='300' cy='250' r='1' fill='%23fff' opacity='0.6'/%3E%3Ccircle cx='350' cy='100' r='2' fill='%23fff' opacity='0.4'/%3E%3Ccircle cx='50' cy='300' r='1.5' fill='%23fff' opacity='0.7'/%3E%3C/svg%3E")`,
             backgroundSize: '400px 400px',
           }}
         />
