@@ -38,7 +38,7 @@ export function MakeBreak() {
           {[...Array(150)].map((_, i) => (
             <div
               key={`far-${i}`}
-              className="absolute w-[1px] h-[1px] bg-white/30 rounded-full"
+              className="absolute w-[2px] h-[2px] bg-white/50 rounded-full"
               style={{
                 left: `${(i * 13.7) % 100}%`,
                 top: `${(i * 17.3) % 100}%`,
@@ -59,7 +59,7 @@ export function MakeBreak() {
           {[...Array(100)].map((_, i) => (
             <div
               key={`med-${i}`}
-              className="absolute w-[1.5px] h-[1.5px] bg-white/60 rounded-full"
+              className="absolute w-[3px] h-[3px] bg-white/80 rounded-full"
               style={{
                 left: `${(i * 19.1) % 100}%`,
                 top: `${(i * 23.7) % 100}%`,
@@ -81,7 +81,7 @@ export function MakeBreak() {
           {[...Array(60)].map((_, i) => (
             <motion.div
               key={`near-${i}`}
-              className="absolute w-1 h-1 bg-white rounded-full"
+              className="absolute w-[4px] h-[4px] bg-white rounded-full"
               style={{
                 left: `${(i * 31.3) % 100}%`,
                 top: `${(i * 37.7) % 100}%`,
@@ -117,7 +117,7 @@ export function MakeBreak() {
         {[...Array(80)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full"
+            className="absolute w-[4px] h-[4px] bg-white rounded-full"
             style={{
               left: `${(i * 7.7) % 100}%`,
               top: `${(i * 13.3) % 100}%`,
