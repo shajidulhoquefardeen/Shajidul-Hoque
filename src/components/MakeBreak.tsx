@@ -144,18 +144,6 @@ export function MakeBreak() {
         </AnimatePresence>
       </div>
 
-      {/* Flashlight effect */}
-      <motion.div 
-        className="absolute z-30 w-[500px] h-[500px] rounded-full pointer-events-none opacity-40 mix-blend-screen"
-        style={{
-          background: 'radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%)',
-        }}
-        animate={{
-          x: mousePos.x - 250,
-          y: mousePos.y - 250,
-        }}
-        transition={{ type: 'spring', damping: 30, stiffness: 200, mass: 0.5 }}
-      />
     </section>
   );
 }
