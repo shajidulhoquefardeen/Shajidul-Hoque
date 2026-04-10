@@ -1,12 +1,27 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
-const STAR_BG = `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0MDAnIGhlaWdodD0nNDAwJz48Y2lyY2xlIGN4PScyMCcgY3k9JzMwJyByPScxJyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjgnLz48Y2lyY2xlIGN4PScxMDAnIGN5PScxNTAnIHI9JzEnIGZpbGw9JyNmZmYnIG9wYWNpdHk9JzAuNScvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzUwJyByPScxLjUnIGZpbGw9JyNmZmYnIG9wYWNpdHk9JzAuOScvPjxjaXJjbGUgY3g9JzMwMCcgY3k9JzI1MCcgcj0nMScgZmlsbD0nI2ZmZicgb3BhY2l0eT0nMC42Jy8+PGNpcmNsZSBjeD0nMzUwJyBjeT0nMTAwJyByPScyJyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjQnLz48Y2lyY2xlIGN4PSc1MCcgY3k9JzMwMCcgcj0nMS41JyBmaWxsPScjZmZmJyBvcGFjaXR5PScwLjcnLz48L3N2Zz4=")`;
+// Generates random star properties for inline SVGs
+const generateStars = (count: number, maxRadius: number) => {
+  return Array.from({ length: count }).map((_, i) => ({
+    id: i,
+    cx: `${Math.random() * 100}%`,
+    cy: `${Math.random() * 100}%`,
+    r: Math.random() * maxRadius + 0.5,
+    opacity: Math.random() * 0.5 + 0.3
+  }));
+};
 
 export function MakeBreak() {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Generate random star maps once on mount
+  const starsFar = useMemo(() => generateStars(150, 1), []);
+  const starsMed = useMemo(() => generateStars(100, 1.5), []);
+  const starsNear = useMemo(() => generateStars(50, 2), []);
+  const starsTwinkle = useMemo(() => generateStars(80, 1.2), []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -30,52 +45,72 @@ export function MakeBreak() {
         
         {/* Parallax Stars Layer 1 (Far - Smallest, Slowest) */}
         <motion.div 
-          className="absolute inset-[-100%]"
-          style={{ backgroundImage: STAR_BG, backgroundSize: '300px 300px', opacity: 0.4 }}
+          className="absolute inset-[-50%] w-[200%] h-[200%]"
           animate={{
-            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * -0.8,
-            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * 0.5,
+            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * -0.4,
+            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * 0.2,
           }}
           transition={{ type: 'spring', damping: 20, stiffness: 300, mass: 0.5 }}
-        />
+        >
+          <svg className="w-full h-full">
+            {starsFar.map(star => (
+              <circle key={star.id} cx={star.cx} cy={star.cy} r={star.r} fill="#fff" opacity={star.opacity} />
+            ))}
+          </svg>
+        </motion.div>
 
         {/* Parallax Stars Layer 2 (Medium - Small, Fast) */}
         <motion.div 
-          className="absolute inset-[-100%]"
-          style={{ backgroundImage: STAR_BG, backgroundSize: '400px 400px', opacity: 0.6, backgroundPosition: '50px 50px' }}
+          className="absolute inset-[-50%] w-[200%] h-[200%]"
           animate={{
-            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * 1.5,
-            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * -1.2,
+            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * 0.8,
+            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * -0.6,
           }}
           transition={{ type: 'spring', damping: 25, stiffness: 400, mass: 0.5 }}
-        />
+        >
+          <svg className="w-full h-full">
+            {starsMed.map(star => (
+              <circle key={star.id} cx={star.cx} cy={star.cy} r={star.r} fill="#fff" opacity={star.opacity + 0.2} />
+            ))}
+          </svg>
+        </motion.div>
 
         {/* Parallax Stars Layer 3 (Near - Largest, Fastest) */}
         <motion.div 
-          className="absolute inset-[-150%]"
-          style={{ backgroundImage: STAR_BG, backgroundSize: '500px 500px', opacity: 0.8, backgroundPosition: '100px 100px' }}
+          className="absolute inset-[-50%] w-[200%] h-[200%]"
           animate={{
-            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * -2.2,
-            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * -1.8,
+            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * -1.2,
+            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * -1.0,
           }}
           transition={{ type: 'spring', damping: 15, stiffness: 350, mass: 0.5 }}
-        />
+        >
+          <svg className="w-full h-full">
+            {starsNear.map(star => (
+              <circle key={star.id} cx={star.cx} cy={star.cy} r={star.r} fill="#fff" opacity={star.opacity + 0.4} />
+            ))}
+          </svg>
+        </motion.div>
 
         {/* Twinkling Layer */}
         <motion.div 
-          className="absolute inset-[-100%]"
-          style={{ backgroundImage: STAR_BG, backgroundSize: '250px 250px', backgroundPosition: '200px 200px' }}
+          className="absolute inset-[-50%] w-[200%] h-[200%]"
           animate={{
-            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * 0.5,
-            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * 0.5,
-            opacity: [0.1, 0.9, 0.1]
+            x: (mousePos.x - (containerRef.current?.offsetWidth || 0) / 2) * 0.3,
+            y: (mousePos.y - (containerRef.current?.offsetHeight || 0) / 2) * 0.3,
+            opacity: [0.3, 1, 0.3]
           }}
           transition={{
-            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+            opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
             x: { type: 'spring', damping: 20, stiffness: 300, mass: 0.5 },
             y: { type: 'spring', damping: 20, stiffness: 300, mass: 0.5 }
           }}
-        />
+        >
+          <svg className="w-full h-full">
+            {starsTwinkle.map(star => (
+              <circle key={star.id} cx={star.cx} cy={star.cy} r={star.r} fill="#fff" opacity={star.opacity} />
+            ))}
+          </svg>
+        </motion.div>
       </div>
 
       {/* Top/Bottom Blending Gradients */}
